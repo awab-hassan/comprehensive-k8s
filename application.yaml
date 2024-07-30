@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    app: app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-deployment
+  template:
+    metadata:
+      labels:
+        app: app-deployment
+    spec:
+      containers:
+      - name: app
+        image: vlogssr546/public-for-project:nodejs
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: app-config-volume
+          mountPath: /app/
+        - name: app-volume-secret
+          mountPath: /app/
+      volumes: 
+        - name: app-config-volume
+          configMap:
+            name: app-config-volume
+        - name: app-volume-secret
+          secret:
+            secretName: app-volume-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+spec:
+  selector: 
+    app: app-deployment
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 3111
+    targetPort: 3000

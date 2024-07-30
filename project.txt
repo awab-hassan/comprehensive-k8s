@@ -1,0 +1,6 @@
+Application dockerize . DONE 
+Repository push.DONE 
+K8s deployment for applicaiton.
+K8s deployment for mongo database and monogo express.
+Using ConfigMap and Secrets Volumes.
+Using ConfigMap and Secrets for credentials. 

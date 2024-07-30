@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config-volume
+data:
+  properties.js: |
+  next-version 100
+  nodejs-version 200
+  listener 3000
+  opened port 3111
+  service app-service
+  this data should be in our properties.js file.
